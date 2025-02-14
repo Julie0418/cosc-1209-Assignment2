@@ -9,6 +9,17 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
            'us-central1-docker.pkg.dev/studious-spirit-439006-b2/julekha-100937821/assignment2:${SHORT_SHA}']
+           
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+    - 'run'
+    - 'deploy'
+    - 'assignment2'
+    - '--image'
+    - 'us-central1-docker.pkg.dev/semester-2-408906/demo-0000000000/assignment2:${SHORT_SHA}'
+    - '--region'
+    - 'us-central1'
 
 images:
   - 'us-central1-docker.pkg.dev/studious-spirit-439006-b2/julekha-100937821/assignment2:${SHORT_SHA}'
